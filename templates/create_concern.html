@@ -1,5 +1,11 @@
 {% extends "base.html" %} {% block content %}
 {% load crispy_forms_tags %}
+<!-- <script>
+    window.onbeforeunload = function (event) {
+      return confirm("Confirm refresh");
+    };
+  </script> -->
+
 
 <div class="md:flex md:items-center md:justify-between">
     <div class="flex-1 min-w-0">
@@ -15,11 +21,15 @@
 >
   Add form
 </button>
+
 </div>
 </div>
 
 <div id="concernforms" class="py-5 mt-5"></div>
 
-<div class="mt-5 py-5 border-t border-gray-100">{% for concern in concerns %} {{ concerns.person }}
+
+<div class="mt-5 py-5 border-t border-gray-100">{% for concern in concerns %} {{ concerns.findings }}
  {% endfor %} </div>
+
+
  {% endblock %}
