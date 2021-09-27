@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+
+<p>Something</p>
+{% for concern in concerns %}
+<div hx-target="#person" hx-swap="outerHTML">
+
+<p>
+    <div hx-target="this" hx-swap="outerHTML">
+    <div id="person">
+    <h3>Person Name: {{ concern.person }}</h3>
+    <p>Findings: {{ concern.findings }}</p>
+    <button hx-get="{% url 'update-concern' concern.id %}">Update</button>
+    <button hx-post="{% url 'delete-concern' concern.id %}">Delete</button>
+</div>
+</div>
+
+
+  
+</p>
+<div>
+    {% endfor %}
+
+
+{% endblock content %}

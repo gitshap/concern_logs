@@ -1,0 +1,7 @@
+<div hx-target="this" hx-swap="outerHTML">
+    <h3>Person Name: {{ concerns.person }}</h3>
+    <p>Findings: {{ concerns.findings }}</p>
+    <button hx-get="{% url 'update-concern' concerns.id %}">Update</button>
+    <button hx-post="{% url 'delete-concern' concerns.id %}">Delete</button>
+
+</div>

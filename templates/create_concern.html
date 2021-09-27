@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+
+<h1>Create and Manage Concerns</h1>
+
+<button
+  type="button"
+  hx-get="{% url 'create-concern-form' %}"
+  hx-target="#concernforms"
+  hx-swap="beforeend"
+>
+  Add form
+</button>
+
+<div id="concernforms"></div>
+
+{% for concern in concerns %} {{ concerns.person }} {% endfor %} {% endblock %}
