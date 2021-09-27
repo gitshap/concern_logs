@@ -13,7 +13,7 @@
     type="button"
     hx-get="{% url 'create-concern-form' %}"
     hx-target="#new_person"
-    hx-swap="beforebegin"
+    hx-swap="afterbegin"
     class="
       inline-flex
       items-center
@@ -53,8 +53,7 @@
   >
 </div>
 
-<div id="new_person"></div>
-{% for concern in concerns %}
+<div id="new_person">{% for concern in concerns %}</div>
 
 <div hx-target="#person" hx-swap="outerHTML">
   <div
