@@ -5,6 +5,24 @@ from concerns.forms import ConcernCreationForm
 
 
 def home(request):
+    concerns = Concerns.objects.all()
+    form = ConcernCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            concern = form.save(commit=False)
+            concern.id = request.POST.get('id')
+            concern.save()
+            return redirect("concern-detail", pk=concern.id)
+        else:
+            return render(request, 'concern_form.html',
+                          context={
+                              "form": form
+                          })
+
+    context = {
+        'form': ConcernCreationForm,
+        'concerns': concerns
+    }
     template_name = 'home.html'
     concerns = Concerns.objects.order_by('-created_at')
 
