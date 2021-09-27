@@ -6,12 +6,14 @@ from concerns.forms import ConcernCreationForm
 
 def home(request):
     template_name = 'home.html'
-    concerns = Concerns.objects.all()
+    concerns = Concerns.objects.order_by('-created_at')
 
     context = {
         'concerns': concerns
     }
     return render(request, template_name, context=context)
+
+# for cancelling extra forms
 
 
 def empty(request):
