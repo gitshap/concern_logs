@@ -1,7 +1,24 @@
-from django.http.response import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from concerns.models import Concerns
 from concerns.forms import ConcernCreationForm
+from django.template import loader
+
+import csv
+
+def some_view(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={'Content-Disposition': 'attachment; filename="somefilename.csv"'},
+    )
+
+    writer = csv.writer(response)
+    writer.writerow(['Person', 'Findings', 'Resolution', 'Status', 'Created At', 'Updated_at'])
+    for concern in Concerns.objects.all().values_list('person','findings','resolution','status','created_at','updated_at'):
+        writer.writerow(concern)
+
+    return response
 
 
 def home(request):

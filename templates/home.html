@@ -7,14 +7,29 @@
 >
   All Concerns
 </h1>
-<div class="mt-4 flex md:mt-0 md:ml-4">
+<div class="mt-4 mb-5 md:mt-0 md:ml-0">
   <button
     type="button"
     hx-get="{% url 'create-concern-form' %}"
     hx-target="#new_person"
     hx-swap="beforebegin"
+    class="
+      inline-flex
+      items-center
+      px-3
+      py-2
+      border border-transparent
+      text-sm
+      leading-4
+      font-medium
+      rounded-md
+      text-white
+      bg-pink-400
+      hover:bg-pink-300
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+    "
   >
-    Add form
+    <p class="uppercase">Add form</p>
   </button>
 </div>
 
