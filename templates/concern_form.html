@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +14,7 @@
       class="mt-3 py-3 px-3 bg-white shadow border border-gray-100"
     >
       <form method="POST">
-        {% csrf_token %} {{ form }} {% if concerns %}
+        {% csrf_token %} {{ form|crispy }} {% if concerns %}
         <button
           type="submit"
           hx-post="{% url 'update-concern' concerns.id %}"
