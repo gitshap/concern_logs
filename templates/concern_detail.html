@@ -7,8 +7,14 @@
     Person Name: {{ concerns.person }}
   </h3>
   <p class="text-gray-600">Findings: {{ concerns.findings }}</p>
-  <p class="text-gray-600">Findings: {{ concerns.resolution }}</p>
-  <p class="text-gray-600">Findings: {{ concerns.status }}</p>
+  <p class="text-gray-600">Resolution: {{ concerns.resolution }}</p>
+
+  {% if concerns.status == "Waiting" %}
+  <p class="text-yellow-600">Status: {{ concerns.status }}</p>
+  {% else %}
+  <p class="text-green-600">Status: {{ concerns.status }}</p>
+  {% endif %}
+
   <p class="text-gray-600">Created at: {{ concerns.created_at }}</p>
   <p class="text-gray-600">Updated at: {{ concerns.updated_at }}</p>
 
@@ -38,6 +44,7 @@
     </button>
     <button
       hx-post="{% url 'delete-concern' concerns.id %}"
+      hx-confirm="Are you sure?"
       class="
         ml-2
         inline-flex
