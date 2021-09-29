@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
-from concerns.models import Concerns
+from concerns.models import Concerns, Name
 from concerns.forms import ConcernCreationForm
 import io
 from django.http import FileResponse
@@ -43,8 +43,8 @@ def some_view(request):
 
     writer = csv.writer(response)
     writer.writerow(['Person', 'Problem', 'Resolution',
-                    'Status', 'Created At', 'Updated_at'])
-    for concern in Concerns.objects.all().values_list('person', 'problem', 'resolution', 'status', 'created_at', 'updated_at'):
+                    'Status', 'Notes', 'Created At', 'Updated_at'])
+    for concern in Concerns.objects.all().values_list('person', 'problem', 'resolution', 'status', 'additional_notes', 'created_at', 'updated_at'):
         writer.writerow(concern)
 
     return response
@@ -154,3 +154,13 @@ def delete_concern(request, pk):
             "POST",
         ]
     )
+
+
+def hello_view(request, name):
+
+    if Name.objects.filter(name=name).exists():
+        return HttpResponse('User has already been created ' + name)
+    else:
+        Name.objects.create(name=name)
+
+    return HttpResponse(name, ' has been created')
