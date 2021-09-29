@@ -2,10 +2,10 @@
 <h1
   class="
     subpixel-antialiased
-    text-5xl text-center text-gray-900 text-opacity-75
+    text-5xl text-center text-green-900 text-opacity-75
   "
 >
-  All Concerns
+  Logging Tool
 </h1>
 
 <div class="mt-4 mb-5 md:mt-0 md:ml-0">
@@ -65,7 +65,7 @@
       <h3 class="text-lg leading-6 font-medium text-gray-600">
         Person Name: {{ concern.person }}
       </h3>
-      <p class="text-gray-600">Findings: {{ concern.findings }}</p>
+      <p class="text-gray-600">Problem: {{ concern.findings }}</p>
       <p class="text-gray-600">Resolution: {{ concern.resolution }}</p>
       {% if concern.status == "Waiting" %}
       <p class="text-yellow-600">Status: {{ concern.status }}</p>

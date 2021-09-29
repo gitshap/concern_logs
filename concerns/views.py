@@ -9,6 +9,7 @@ from reportlab.pdfgen import canvas
 
 import csv
 
+
 def export_pdf(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
@@ -23,8 +24,6 @@ def export_pdf(request):
     p.drawString(300, 700, concern.findings)
     p.drawString(400, 700, concern.status)
 
-    
-
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
@@ -35,17 +34,17 @@ def export_pdf(request):
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
 
 
-
 def some_view(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(
         content_type='text/csv/force-download',
-        headers={'Content-Disposition': 'attachment; filename="somefilename.csv"'},
+        headers={'Content-Disposition': 'attachment; filename="report.csv"'},
     )
 
     writer = csv.writer(response)
-    writer.writerow(['Person', 'Findings', 'Resolution', 'Status', 'Created At', 'Updated_at'])
-    for concern in Concerns.objects.all().values_list('person','findings','resolution','status','created_at','updated_at'):
+    writer.writerow(['Person', 'Problem', 'Resolution',
+                    'Status', 'Created At', 'Updated_at'])
+    for concern in Concerns.objects.all().values_list('person', 'problem', 'resolution', 'status', 'created_at', 'updated_at'):
         writer.writerow(concern)
 
     return response
