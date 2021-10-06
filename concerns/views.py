@@ -137,7 +137,7 @@ def update_concern(request, pk):
     context = {
         "form": form,
         "concerns": concerns
-    }
+    } 
 
     return render(request, "concern_form.html", context)
 
@@ -164,3 +164,33 @@ def hello_view(request, name):
         Name.objects.create(name=name)
 
     return HttpResponse(name, ' has been created')
+
+
+def list_all_concerns(request):
+    concerns = Concerns.objects.all()
+    form = ConcernCreationForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            concern = form.save(commit=False)
+            concern.id = request.POST.get('id')
+            concern.save()
+            return redirect("concern-detail", pk=concern.id)
+        else:
+            return render(request, 'concern_form.html',
+                          context={
+                              "form": form
+                          })
+
+    context = {
+        'form': ConcernCreationForm,
+        'concerns': concerns
+    }
+    template_name = 'all_list.html'
+    concerns = Concerns.objects.order_by('-updated_at').filter(status='Waiting')
+    concerns_done = Concerns.objects.order_by('-updated_at').filter(status='Done')
+
+    context = {
+        'concerns': concerns,
+        'concerns_done': concerns_done
+    }
+    return render(request, template_name, context=context)

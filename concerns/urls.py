@@ -1,6 +1,6 @@
 from django.urls import path
 from concerns.views import (create_concern, create_concern_form, concern_detail, update_concern,
-                            delete_concern, home, empty, some_view, export_pdf, hello_view)
+                            delete_concern, home, empty, some_view, export_pdf, hello_view, list_all_concerns)
 
 urlpatterns = [
     path('create_concern/', create_concern, name='create-concern'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('htmx/concern/<pk>/', concern_detail, name="concern-detail"),
     path('htmx/concern/<pk>/update/', update_concern, name="update-concern"),
     path('htmx/concern/<pk>/delete/', delete_concern, name="delete-concern"),
+    path('all-concerns/', list_all_concerns, name="list_all_concerns"),
 
 
 ]
