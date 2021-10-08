@@ -51,6 +51,25 @@
     href="{% url 'csv' %}"
     >Export to CSV</a
   >
+  <a
+    class="
+      inline-flex:
+      items-center
+      px-3
+      py-2
+      border border-transparent
+      text-sm
+      leading-4
+      font-medium
+      rounded-md
+      text-white
+      bg-yellow-400
+      hover:bg-yellow-300
+      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+    "
+    href="{% url 'list_all_concerns' %}"
+    >Separated</a
+  >
 </div>
 
 <div id="new_person">{% for concern in concerns %}</div>

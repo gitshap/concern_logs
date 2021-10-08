@@ -50,7 +50,7 @@ def some_view(request):
     return response
 
 
-def home(request):
+def home_page(request):
     concerns = Concerns.objects.all()
     form = ConcernCreationForm(request.POST or None)
     if request.method == 'POST':

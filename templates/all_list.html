@@ -1,27 +1,35 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
 <div class="flex space-x-4 ...">
   <div class="flex-1 ...">
-    <h1 class="
+    <h1
+      class="
         subpixel-antialiased
-        text-5xl text-center text-green-900 text-opacity-75
-      ">
+        text-5xl text-center text-yellow-900 text-opacity-75
+      "
+    >
       Waiting
     </h1>
 
     <div id="new_person">{% for concern in concerns %}</div>
 
     <div hx-target="#person" hx-swap="outerHTML">
-      <div hx-target="this" hx-swap="outerHTML" class="mt-3 py-3 px-3 bg-white shadow border border-gray-100">
+      <div
+        hx-target="this"
+        hx-swap="outerHTML"
+        class="mt-3 py-3 px-3 bg-white shadow border border-gray-100"
+      >
         <div id="person">
           <div class="w-1/6 bg-green-500 rounded-lg">
-            <h3 class="
+            <h3
+              class="
                 text-center text-lg
                 leading-10
                 font-medium
                 text-white
                 md:w-auto
                 select-none
-              ">
+              "
+            >
               Case ID: TC-{{ concern.id }}
             </h3>
           </div>
@@ -44,7 +52,9 @@
           <p class="text-gray-600">Updated at: {{ concern.updated_at }}</p>
 
           <div class="mt-2">
-            <button hx-get="{% url 'update-concern' concern.id %}" class="
+            <button
+              hx-get="{% url 'update-concern' concern.id %}"
+              class="
                 inline-flex
                 items-center
                 px-3
@@ -61,10 +71,14 @@
                 focus:ring-2
                 focus:ring-offset-2
                 focus:ring-indigo-500
-              ">
+              "
+            >
               Update
             </button>
-            <button hx-post="{% url 'delete-concern' concern.id %}" hx-confirm="Are you sure?" class="
+            <button
+              hx-post="{% url 'delete-concern' concern.id %}"
+              hx-confirm="Are you sure?"
+              class="
                 ml-2
                 inline-flex
                 items-center
@@ -82,7 +96,8 @@
                 focus:ring-2
                 focus:ring-offset-2
                 focus:ring-red-500
-              ">
+              "
+            >
               Delete
             </button>
           </div>
@@ -94,27 +109,35 @@
   </div>
   <div class="flex-1 ...">
     <!-- Done -->
-    <h1 class="
+    <h1
+      class="
         subpixel-antialiased
         text-5xl text-center text-green-900 text-opacity-75
-      ">
+      "
+    >
       Done
     </h1>
 
     <div id="new_person">{% for done_conern in concerns_done %}</div>
 
     <div hx-target="#person" hx-swap="outerHTML">
-      <div hx-target="this" hx-swap="outerHTML" class="mt-3 py-3 px-3 bg-white shadow border border-gray-100">
+      <div
+        hx-target="this"
+        hx-swap="outerHTML"
+        class="mt-3 py-3 px-3 bg-white shadow border border-gray-100"
+      >
         <div id="person">
           <div class="w-1/6 bg-green-500 rounded-lg">
-            <h3 class="
+            <h3
+              class="
                 text-center text-lg
                 leading-10
                 font-medium
                 text-white
                 md:w-auto
                 select-none
-              ">
+              "
+            >
               Case ID: TC-{{ done_conern.id }}
             </h3>
           </div>
@@ -137,7 +160,9 @@
           <p class="text-gray-600">Updated at: {{ done_conern.updated_at }}</p>
 
           <div class="mt-2">
-            <button hx-get="{% url 'update-concern' done_conern.id %}" class="
+            <button
+              hx-get="{% url 'update-concern' done_conern.id %}"
+              class="
                 inline-flex
                 items-center
                 px-3
@@ -154,10 +179,14 @@
                 focus:ring-2
                 focus:ring-offset-2
                 focus:ring-indigo-500
-              ">
+              "
+            >
               Update
             </button>
-            <button hx-post="{% url 'delete-concern' done_conern.id %}" hx-confirm="Are you sure?" class="
+            <button
+              hx-post="{% url 'delete-concern' done_conern.id %}"
+              hx-confirm="Are you sure?"
+              class="
                 ml-2
                 inline-flex
                 items-center
@@ -175,7 +204,8 @@
                 focus:ring-2
                 focus:ring-offset-2
                 focus:ring-red-500
-              ">
+              "
+            >
               Delete
             </button>
           </div>
