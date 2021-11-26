@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-my_local_time = timezone.localtime(timezone.now())
+now = timezone.now()
 
 
 class Concerns(models.Model):
