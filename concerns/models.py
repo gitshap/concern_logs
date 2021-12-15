@@ -26,8 +26,3 @@ class Concerns(models.Model):
         return f"{self.person}'s problem is {self.status}"
 
 
-class Name(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name

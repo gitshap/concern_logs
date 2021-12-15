@@ -1,11 +1,11 @@
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
-from concerns.models import Concerns, Name
+from concerns.models import Concerns
 from concerns.forms import ConcernCreationForm
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
-
+from django.core.paginator import Paginator
 
 import csv
 
@@ -52,6 +52,7 @@ def some_view(request):
 
 def home_page(request):
     concerns = Concerns.objects.all()
+    paginator = Paginator(concerns, 5)
     form = ConcernCreationForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -64,17 +65,15 @@ def home_page(request):
                           context={
                               "form": form
                           })
-
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'form': ConcernCreationForm,
-        'concerns': concerns
+        'concerns': concerns,
+        'page_obj': page_obj
     }
     template_name = 'home.html'
     concerns = Concerns.objects.order_by('-created_at')
-
-    context = {
-        'concerns': concerns
-    }
     return render(request, template_name, context=context)
 
 # for cancelling extra forms
@@ -156,14 +155,7 @@ def delete_concern(request, pk):
     )
 
 
-def hello_view(request, name):
 
-    if Name.objects.filter(name=name).exists():
-        return HttpResponse('User has already been created ' + name)
-    else:
-        Name.objects.create(name=name)
-
-    return HttpResponse(name, ' has been created')
 
 
 def list_all_concerns(request):
